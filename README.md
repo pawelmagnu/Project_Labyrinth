@@ -13,3 +13,9 @@
 > * A*
 > * Dijkstra
 > * https://en.wikipedia.org/wiki/Maze_solving_algorithm
+
+Notatki ze spotkania:
+- labirynt heksagonalny/trójkątny
+- interfejs komunikacji z użytkownikiem
+- algorytm przechodzenia po labiryncie
+- interpretacja graficzna
