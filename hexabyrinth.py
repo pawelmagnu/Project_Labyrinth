@@ -7,7 +7,7 @@ import random
 #                       -2-2-2                             0 1 2
 
 #   Każda komóka posiada 2 współrzędne (x,y) gdzie x to numer wiersza, a y to numer komórki w tym wierszu
-#   dla labiryntu o rozmiarze n (ilość pierścieni licząc komórkę środkową) x,y moga przyjmować wartosci z ponizszych przedzialow:
+#   dla labiryntu o rozmiarze <size> (ilość pierścieni licząc komórkę środkową) x,y moga przyjmować wartosci z ponizszych przedzialow:
 #   x € <-(size-1), size-1>
 #   y € <0, 2(size-1) - abs(x)>
 #   każda z komórek ma ściane w kierunku NE, E, SE, SW, W, NW
@@ -124,7 +124,3 @@ class Maze:
         maze = Maze(size)
         maze.randomize()
         return maze
-
-
-maze = Maze.generate(10)
-
