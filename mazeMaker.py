@@ -3,55 +3,75 @@ import pygame
 import math
 import pyautogui
 
-(width,height) = pyautogui.size()
-width = (int)(width*(9/10))
-height = (int)(height*(9/10))
+(width, height) = pyautogui.size()
+mon_width = int(width * (95 / 100))
+mon_height = int(height * (95/ 100))
 
+#preferowany rozmiar między 15, a 30
+size = int(input("Podaj rozmiar labiryntu: "))
 
-size = int(input("Podaj rozmiar labiryntu:"))
-
-gr=1
+thick = 2
 colour = 0x458693
+offset = 7 / 8
 
 maze = hexabyrinth.Maze.generate(size)
 
-radius_w = width/(2*(2*size-1))
-radius_h = height/((size*3-1))
+radius_w = mon_width / (2 * (2 * size - 1))
+radius_h = mon_height / (size * 3 - 1)
 
-radius = int(min(radius_h,radius_w))
+radius = int(min(radius_h, radius_w))
+win_width = int((2 * size - 1) * 2 * radius*offset)
+win_height = (size * 3 - 1) * radius
 
-screen = pygame.display.set_mode((int(((2*size-1)*2*radius)*(9/10)), (size*3-1)*radius))
+screen = pygame.display.set_mode((win_width, win_height))
+print("Radius: ", radius, "width: ", win_width, "height: ", win_height)
 
-(x_0,y_0)=(radius,height/2)
-for n in range(-(size-1),size):
-    for m in range(0, 2*(size-1)-abs(n)+1):
-        x_k = x_0 + radius*(abs(n)+2*m)*(7/8)
-        y_k = y_0 - 3*radius*n/2
+(x_0, y_0) = (radius, win_height / 2)
+for n in range(-(size - 1), size):
+    for m in range(0, 2 * (size - 1) - abs(n) + 1):
+        x_k = x_0 + radius * (abs(n) + 2 * m) * offset
+        y_k = y_0 - 3 * radius * n / 2
         cell = maze.get_cell(n, m)
 
         if hexabyrinth.NE in cell.walls:
-            #NE
-            pygame.draw.line(screen, colour, ((int)(x_k+radius*math.cos(math.pi/6)),(int)(y_k-radius*math.sin(math.pi/6))), ((int)(x_k),(int)(y_k-radius)), gr)
+            # NE
+            pygame.draw.line(screen, colour,
+                             (int(x_k + radius * math.cos(math.pi / 6)), int(y_k - radius * math.sin(math.pi / 6))),
+                             (int(x_k), int(y_k - radius)), thick)
 
         if hexabyrinth.NW in cell.walls:
-            #NW
-            pygame.draw.line(screen, colour,((int)(x_k),(int)(y_k-radius)), ((int)(x_k+radius*math.cos(150*2*math.pi/360)),(int)(y_k-radius*math.sin(150*2*math.pi/360))), gr)
+            # NW
+            pygame.draw.line(screen, colour, (int(x_k), int(y_k - radius)), (
+                int(x_k + radius * math.cos(150 * 2 * math.pi / 360)),
+                int(y_k - radius * math.sin(150 * 2 * math.pi / 360))), thick)
 
         if hexabyrinth.W in cell.walls:
-            #W
-            pygame.draw.line(screen, colour, ((int)(x_k+radius*math.cos(150*2*math.pi/360)),(int)(y_k-radius*math.sin(150*2*math.pi/360))), ((int)(x_k+radius*math.cos(210*2*math.pi/360)),(int)(y_k-radius*math.sin(210*2*math.pi/360))), gr)
+            # W
+            pygame.draw.line(screen, colour, (int(x_k + radius * math.cos(150 * 2 * math.pi / 360)),
+                                              int(y_k - radius * math.sin(150 * 2 * math.pi / 360))), (
+                                 int(x_k + radius * math.cos(210 * 2 * math.pi / 360)),
+                                 int(y_k - radius * math.sin(210 * 2 * math.pi / 360))), thick)
 
         if hexabyrinth.SW in cell.walls:
-            #SW
-            pygame.draw.line(screen, colour, ((int)(x_k+radius*math.cos(210*2*math.pi/360)),(int)(y_k-radius*math.sin(210*2*math.pi/360))), ((int)(x_k+radius*math.cos(270*2*math.pi/360)),(int)(y_k-radius*math.sin(270*2*math.pi/360))), gr)
+            # SW
+            pygame.draw.line(screen, colour, (int(x_k + radius * math.cos(210 * 2 * math.pi / 360)),
+                                              int(y_k - radius * math.sin(210 * 2 * math.pi / 360))), (
+                                 int(x_k + radius * math.cos(270 * 2 * math.pi / 360)),
+                                 int(y_k - radius * math.sin(270 * 2 * math.pi / 360))), thick)
 
         if hexabyrinth.SE in cell.walls:
-            #SE
-            pygame.draw.line(screen, colour, ((int)(x_k+radius*math.cos(270*2*math.pi/360)),(int)(y_k-radius*math.sin(270*2*math.pi/360))), ((int)(x_k+radius*math.cos(330*2*math.pi/360)),(int)(y_k-radius*math.sin(330*2*math.pi/360))), gr)
+            # SE
+            pygame.draw.line(screen, colour, (int(x_k + radius * math.cos(270 * 2 * math.pi / 360)),
+                                              int(y_k - radius * math.sin(270 * 2 * math.pi / 360))), (
+                                 int(x_k + radius * math.cos(330 * 2 * math.pi / 360)),
+                                 int(y_k - radius * math.sin(330 * 2 * math.pi / 360))), thick)
 
         if hexabyrinth.E in cell.walls:
-            #E
-            pygame.draw.line(screen, colour, ((int)(x_k+radius*math.cos(330*2*math.pi/360)),(int)(y_k-radius*math.sin(330*2*math.pi/360))), ((int)(x_k+radius*math.cos(30*2*math.pi/360)),(int)(y_k-radius*math.sin(30*2*math.pi/360))), gr)
+            # E
+            pygame.draw.line(screen, colour, (int(x_k + radius * math.cos(330 * 2 * math.pi / 360)),
+                                              int(y_k - radius * math.sin(330 * 2 * math.pi / 360))), (
+                                 int(x_k + radius * math.cos(30 * 2 * math.pi / 360)),
+                                 int(y_k - radius * math.sin(30 * 2 * math.pi / 360))), thick)
 
         pygame.display.update()
 

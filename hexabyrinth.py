@@ -104,7 +104,7 @@ class Maze:
         current_cell = random.choice(self.cells)
         visited_cells = 1
 
-        print(current_cell, "numer komorki: " + str(visited_cells))     #zwraca kolejne komórki które są odwiedzane podczas tworzenia
+     #   print(current_cell, "numer komorki: " + str(visited_cells))     #zwraca kolejne komórki które są odwiedzane podczas tworzenia
 
         while visited_cells < len(self.cells):
             neighbours = [c for c in self.neighbours(current_cell) if c.is_walled()]
@@ -114,7 +114,7 @@ class Maze:
                 cell_stack.append(current_cell)
                 visited_cells += 1
                 current_cell = neighbour
-                print(current_cell, "numer komorki: " + str(visited_cells))
+         #       print(current_cell, "numer komorki: " + str(visited_cells))
             else:
                 current_cell = cell_stack.pop()
 
