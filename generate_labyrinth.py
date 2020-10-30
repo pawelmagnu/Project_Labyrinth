@@ -59,10 +59,32 @@ class Maze:
                 self.create_maze(node_x, node_y)
         return
 
+    # takie do wypisywania ladnej macierzy
+    def __str__(self):
+        string = ""
+        conv = {
+            True: "XX",
+            False: "  "
+        }
+        for y in range(self.height):
+            for x in range(self.width):
+                string += conv[self.cells[y][x]]
+            string += "\n"
+        return string
+
+
+
 
 def main():
     maze = Maze(20, 20)
     maze.create_maze(1, 1)
+
+    # maze = Maze(20, 20)
+    # maze.create_maze(1, 1)
+    # print(maze)
+    # print('\n \n \n ')
+    # for row in maze.cells:
+    #     print(row, '\n')
 
     # Initialize the pygame
     pygame.init()
