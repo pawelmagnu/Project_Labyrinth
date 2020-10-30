@@ -1,4 +1,13 @@
+import pygame
 import random
+import time
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+PINK = (255, 0, 255)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 
 
 class Maze:
@@ -50,24 +59,39 @@ class Maze:
                 self.create_maze(node_x, node_y)
         return
 
-    # takie do wypisywania ladnej macierzy
-    def __str__(self):
-        string = ""
-        conv = {
-            True: "XX",
-            False: "  "
-        }
-        for y in range(self.height):
-            for x in range(self.width):
-                string += conv[self.cells[y][x]]
-            string += "\n"
-        return string
+
+def main():
+    maze = Maze(20, 20)
+    maze.create_maze(1, 1)
+
+    # Initialize the pygame
+    pygame.init()
+    WIDTH = 600
+    HEIGHT = 600
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Generator labiryntów")
+    clock = pygame.time.Clock()
+    running = True
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        screen.fill((BLACK))
+
+        for y in range(maze.height):
+            for x in range(maze.width):
+                if maze.cells[y][x] == 0:
+                    pygame.draw.rect(screen, WHITE, (x * 32 - 32, y * 32 - 32, 32, 32))
+                    pygame.display.update()
+                    time.sleep(.003)
+
+
+
+        pygame.display.flip()
+    pygame.quit()
 
 
 if __name__ == "__main__":
-    maze = Maze(20, 20)
-    maze.create_maze(1, 1)
-    print(maze)
-    print('\n \n \n ')
-    for row in maze.cells:
-      print(row, '\n')
+    main()
