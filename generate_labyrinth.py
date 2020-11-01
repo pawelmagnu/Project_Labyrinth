@@ -73,8 +73,6 @@ class Maze:
         return string
 
 
-
-
 def main():
     maze = Maze(20, 20)
     maze.create_maze(1, 1)
@@ -89,6 +87,7 @@ def main():
     # Initialize the pygame
     pygame.init()
     WIDTH = 600
+    once = False
     HEIGHT = 600
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -101,17 +100,16 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         screen.fill((BLACK))
+        if once == False:
+            for y in range(maze.height):
+                for x in range(maze.width):
+                    if maze.cells[y][x] == 0:
+                        pygame.draw.rect(screen, WHITE, (x * 32 - 32, y * 32 - 32, 32, 32))
+                        pygame.display.update()
+                        time.sleep(.003)
+                        once = True
 
-        for y in range(maze.height):
-            for x in range(maze.width):
-                if maze.cells[y][x] == 0:
-                    pygame.draw.rect(screen, WHITE, (x * 32 - 32, y * 32 - 32, 32, 32))
-                    pygame.display.update()
-                    time.sleep(.003)
-
-
-
-        pygame.display.flip()
+       # pygame.display.flip()
     pygame.quit()
 
 
