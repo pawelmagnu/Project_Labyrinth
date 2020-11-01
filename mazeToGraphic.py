@@ -1,15 +1,15 @@
 import mazeGenerator
 import pygame
 import math
-import pyautogui
 
-mon_width = 1280
-mon_height = 720
-
-if pyautogui:
+try:
+    import pyautogui
     (width, height) = pyautogui.size()
     mon_width = int(width * (9 / 10))
     mon_height = int(height * (9 / 10))
+except:
+    mon_width = 1280
+    mon_height = 720
 
 # preferowany rozmiar między 15, a 30
 while True:
