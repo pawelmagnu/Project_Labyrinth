@@ -1,3 +1,4 @@
+# Aktualny kod w repozytorium organizacji!
 # Project_Labyrinth
 ## Ogólny zamysł:
 > ### Naszym projektem jest generowanie labiryntu jednym, lub w późniejszej fazie kilkoma, algorytmami i przedstawienie tego w interfejsie graficznym
