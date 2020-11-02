@@ -7,9 +7,12 @@ choice = ('N','W')
 white =(255, 255, 255)
 black =(0, 0, 0)
 
-size = int(input("Rozmiar: "))
+size = int(input("Size of the maze: "))
+in_pixels = int(input("Size of 1 cell: "))
+dlay = int(input("Delay: "))
+
 last = size*2 -2
-dis = size*40-20
+dis = size*2*in_pixels-in_pixels
 screen = pygame.display.set_mode(size=(dis, dis))
 pygame.display.set_caption("Project Labyrinth")
 
@@ -51,13 +54,16 @@ def Connect(a, b):
             grid[a][b-1]=1
 #End of path carving
 
+#print(grid)
+#print(last)
+
 def Draw(a,b):
     if grid[a][b] == 1:
-        pygame.draw.rect(screen,white,[a*20,b*20,20,20])
+        pygame.draw.rect(screen,white,[a*in_pixels,b*in_pixels,in_pixels,in_pixels])
     elif grid[a][b]==0:
-        pygame.draw.rect(screen,black,[a*20,b*20,20,20])
+        pygame.draw.rect(screen,black,[a*in_pixels,b*in_pixels,in_pixels,in_pixels])
     pygame.display.update()
-    pygame.time.delay(10)
+    pygame.time.delay(dlay)
 
 
 for i in range(0,last+1,2):
