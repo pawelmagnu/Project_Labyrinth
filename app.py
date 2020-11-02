@@ -51,9 +51,6 @@ def Connect(a, b):
             grid[a][b-1]=1
 #End of path carving
 
-#print(grid)
-#print(last)
-
 def Draw(a,b):
     if grid[a][b] == 1:
         pygame.draw.rect(screen,white,[a*20,b*20,20,20])
@@ -77,79 +74,3 @@ while not finish:
             Draw(j,i)
 
 pygame.quit()
-
-
-
-
-# print(grid)
-
-
-# print(grid)
-
-'''
-visited = []
-queue = []
-
-
-x = 1
-y = 1
-
-size = input()
-screen = pygame.display.set_mode((int(s) * int('20'), int(s) * int('20')))
-
-grid = {(x, y): 1 for x in range(1, int(s) + int('1')) for y in range(1, int(s) + int('1'))}
-
-
-def MazeLoop(x, y):
-    queue.append((x, y))
-    visited.append((x, y))
-    grid[(1, 1)] = 0
-    while len(queue) > 0:
-        neighb = []
-
-        if (x + 2, y) not in visited and (x + 2, y) in grid:
-            neighb.append("E")
-
-        if (x - 2, y) not in visited and (x - 2, y) in grid:
-            neighb.append("W")
-
-        if (x, y + 2) not in visited and (x, y + 2) in grid:
-            neighb.append("N")
-
-        if (x, y - 2) not in visited and (x, y - 2) in grid:
-            neighb.append("S")
-        if len(neighb) > 0:
-            random_neighb = (random.choice(neighb))
-
-            if random_neighb == "E":
-                x = x + 2
-                grid[(x, y)] = 0
-                grid[(x - 1, y)] = 0
-                queue.append((x, y))
-                visited.append((x, y))
-
-            elif random_neighb == "W":
-                x = x - 2
-                grid[(x, y)] = 0
-                grid[(x + 1, y)] = 0
-                queue.append((x, y))
-                visited.append((x, y))
-
-            elif random_neighb == "N":
-                y = y + 2
-                grid[(x, y)] = 0
-                grid[(x, y - 1)] = 0
-                queue.append((x, y))
-                visited.append((x, y))
-
-            elif random_neighb == "S":
-                y = y - 2
-                grid[(x, y)] = 0
-                grid[(x, y + 1)] = 0
-                queue.append((x, y))
-                visited.append((x, y))
-
-        else:
-            x, y = queue.pop()
-
-'''
